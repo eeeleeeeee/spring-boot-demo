@@ -1,10 +1,10 @@
 package com.ele.demo;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Log4j2
+@Slf4j
 @Component
 public class MyCommandLineRunner implements CommandLineRunner {
 
