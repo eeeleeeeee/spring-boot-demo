@@ -1,0 +1,15 @@
+spring:
+  flyway:
+    enabled: true                                         # 啟用或禁用 Flyway 的資料庫 migration 功能
+    baseline-on-migrate: true                             #
+    clean-on-validation-error: false                      # migration 失敗時，是否自動清理 DB
+    sql-migration-prefix: V                               # Flyway 掃描 SQL migration 腳本時，使用的文件名 prefix
+    sql-migration-suffixes: .sql                          # Flyway 掃描 SQL migration 腳本時，使用的文件名 suffix
+    locations: classpath:db/init                          # Flyway 掃描 SQL migration 腳本的位置
+    validate-on-migrate: true                             # Flyway 在每次 migration 前，是否驗證已經執行過的 migration 腳本
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3300/flywaydemo
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
