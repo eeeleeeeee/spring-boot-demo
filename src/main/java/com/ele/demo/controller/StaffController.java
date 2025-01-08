@@ -1,5 +1,7 @@
-package com.ele.demo;
+package com.ele.demo.controller;
 
+import com.ele.demo.datasource.staff.pojo.Staff;
+import com.ele.demo.datasource.staff.StaffRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -13,9 +15,9 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/demo")
+@RequestMapping("/staff")
 @RestController
-public class DemoController {
+public class StaffController {
 
     private final StaffRepository staffRepository;
 

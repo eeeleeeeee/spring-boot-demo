@@ -1,4 +1,4 @@
-package com.ele.demo;
+package com.ele.demo.datasource.product.pojo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "staff") // This tells Hibernate to make a table out of this class
-public class Staff {
+@Entity(name = "product")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +20,7 @@ public class Staff {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "price")
+    private Integer price;
 }

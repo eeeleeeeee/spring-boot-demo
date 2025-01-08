@@ -6,10 +6,27 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    hibernate:
-      ddl-auto: update
+        hbm2ddl:
+          auto: create
   datasource:
-    url: jdbc:mysql://localhost:3307/example
-    username: user
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    staff:
+      url: jdbc:mysql://localhost:3307/example
+      username: user
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        pool-name: staff-master-cp
+        maximum-pool-size: 20
+        connection-init-sql: "SET NAMES 'utf8mb4'"
+        max-lifetime: 60000
+    product:
+      url: jdbc:mysql://localhost:3308/product
+      username: product_user
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        pool-name: staff-master-cp
+        maximum-pool-size: 20
+        connection-init-sql: "SET NAMES 'utf8mb4'"
+        max-lifetime: 60000
+
