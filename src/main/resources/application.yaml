@@ -1,6 +1,6 @@
 spring:
   application:
-    name:spring-boot-demo
+    name: @project.artifactId@
   jpa:
     show-sql: true
     properties:
@@ -13,3 +13,16 @@ spring:
     username: user
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  servlet:
+    context-path: /spring-boot-demo
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    operations-sorter: method
+    default-models-expand-depth: 0
+    doc-expansion: none
+    tags-sorter: alpha
+  writer-with-default-pretty-printer: true
