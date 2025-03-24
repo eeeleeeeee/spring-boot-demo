@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: @project.artifactId@
+
+server:
+  servlet:
+    context-path: /spring-boot-demo
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    operations-sorter: method
+    default-models-expand-depth: 0
+    doc-expansion: none
+    tags-sorter: alpha
+  writer-with-default-pretty-printer: true
