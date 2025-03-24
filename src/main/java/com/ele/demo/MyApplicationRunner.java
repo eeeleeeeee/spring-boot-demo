@@ -18,7 +18,11 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+
+        log.info("Hello Application Runner");
+
         var jobValues = args.getOptionValues(JOB);
+
         if (jobValues != null && jobValues.size() > 0) {
             String jobName = jobValues.get(0);
             try {
