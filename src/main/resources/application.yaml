@@ -1,6 +1,12 @@
 spring:
   application:
     name: @project.artifactId@
+  rabbitmq:
+    host: localhost
+    virtual-host: /
+    port: 5672
+    username: root
+    password: admin1234
 
 server:
   servlet:
