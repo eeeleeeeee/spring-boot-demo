@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <!-- console (彩色) -->
+        <Property name="PATTERN_COLOR">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%thread] %logger{1.1.1.*}.%M() - %msg%n
+        </Property>
+
+        <!-- console (純文字) -->
+        <Property name="PATTERN_PLAIN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{1.1.1.*}.%M() - %msg%n
+        </Property>
+
+        <!-- file -->
+        <Property name="PATTERN_FILE">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread][%file:%line].%M() - %msg%n
+        </Property>
+    </Properties>
+
+    <!-- ========= default (local) ========= -->
+    <Appenders>
+        <Console name="console-pattern" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN_COLOR}" disableAnsi="false" noConsoleNoAnsi="false"/>
+        </Console>
+
+        <Async name="async-console">
+            <AppenderRef ref="console-pattern"/>
+        </Async>
+
+        <RollingFile name="info_file" fileName="./target/log/info.log" filePattern="./target/log/logFile.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="${PATTERN_FILE}"/>
+            <Policies><TimeBasedTriggeringPolicy/></Policies>
+        </RollingFile>
+
+        <RollingFile name="error_file" fileName="./target/log/error.log" filePattern="./target/log/logFile.%d{yyyy-MM-dd}">
+            <PatternLayout pattern="${PATTERN_FILE}"/>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies><TimeBasedTriggeringPolicy/></Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="async-console"/>
+            <AppenderRef ref="info_file" level="info"/>
+            <AppenderRef ref="error_file" level="error"/>
+        </Root>
+
+        <Logger name="com.ele.demo" level="debug" additivity="false" includeLocation="true">
+            <AppenderRef ref="async-console"/>
+            <AppenderRef ref="info_file"/>
+            <AppenderRef ref="error_file" level="error"/>
+        </Logger>
+    </Loggers>
+
+    <!-- ========= k8s: override to plain console only ========= -->
+    <SpringProfile name="k8s">
+        <Appenders>
+            <Console name="console-pattern" target="SYSTEM_OUT">
+                <PatternLayout pattern="${PATTERN_PLAIN}" disableAnsi="true" noConsoleNoAnsi="true"/>
+            </Console>
+
+            <Async name="async-console">
+                <AppenderRef ref="console-pattern"/>
+            </Async>
+        </Appenders>
+
+        <Loggers>
+            <Root level="info" includeLocation="false">
+                <AppenderRef ref="async-console"/>
+            </Root>
+
+            <Logger name="com.ele.demo" level="debug" additivity="false" includeLocation="false">
+                <AppenderRef ref="async-console"/>
+            </Logger>
+        </Loggers>
+    </SpringProfile>
+</Configuration>
