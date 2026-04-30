@@ -14,3 +14,9 @@ springdoc:
     doc-expansion: none
     tags-sorter: alpha
   writer-with-default-pretty-printer: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
