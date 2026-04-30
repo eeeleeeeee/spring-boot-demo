@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn">
     <Properties>
+        <Property name="TRACE_BLOCK">[T-%X{traceId},S-%X{spanId}]</Property>
+
         <!-- console (彩色) -->
         <Property name="PATTERN_COLOR">
-            %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%thread] %logger{1.1.1.*}.%M() - %msg%n
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level} [%thread] ${TRACE_BLOCK} %logger{1.1.1.*}.%M() - %msg%n
         </Property>
 
         <!-- console (純文字) -->
         <Property name="PATTERN_PLAIN">
-            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{1.1.1.*}.%M() - %msg%n
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] ${TRACE_BLOCK} %logger{1.1.1.*}.%M() - %msg%n
         </Property>
 
         <!-- file -->
         <Property name="PATTERN_FILE">
-            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread][%file:%line].%M() - %msg%n
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] ${TRACE_BLOCK} [%file:%line].%M() - %msg%n
         </Property>
     </Properties>
 

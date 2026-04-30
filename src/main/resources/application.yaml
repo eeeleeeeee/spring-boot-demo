@@ -2,6 +2,11 @@ spring:
   application:
     name: @project.artifactId@
 
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
 server:
   servlet:
     context-path: /spring-boot-demo

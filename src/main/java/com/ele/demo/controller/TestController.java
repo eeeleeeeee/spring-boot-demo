@@ -22,6 +22,7 @@ public class TestController {
     @Operation(summary = "Hello world")
     @GetMapping("/hello-world")
     public ResponseEntity<?> hello() {
+        log.info("Test For TraceId and SpanId.");
         return ResponseEntity.ok("Hello World. The current datetime is " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
     }
 }
