@@ -1,6 +1,9 @@
 spring:
   application:
     name: @project.artifactId@
+  data:
+    mongodb:
+      uri: mongodb://root:password@localhost:27017/demo?authSource=admin
 
 server:
   servlet:
